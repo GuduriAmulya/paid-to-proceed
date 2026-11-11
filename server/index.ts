@@ -40,9 +40,18 @@ function view(p: Project) {
 
 app.get("/api/state", h(async (_req, res) => {
   const db = getDb();
-  const paypalMissing = hasPayPal ? await missingFeatures().catch((e) => [`(auth error: ${(e as Error).message})`]) : [];
+  let paypalMissing: string[] = [];
+  let paypalAuthError: string | null = null;
+  if (hasPayPal) {
+    try {
+      paypalMissing = await missingFeatures();
+    } catch (e) {
+      paypalAuthError = (e as Error).message;
+    }
+  }
   res.json({
     paypalMissing,
+    paypalAuthError,
     today: isoDate(now()),
     clockOffsetDays: db.clockOffsetDays,
     paypalConfigured: hasPayPal,

@@ -3,6 +3,8 @@
 **Paid to Proceed is an AI back-office agent for freelancers who bill overseas clients through PayPal.**
 You drop in a contract. Paid to Proceed turns it into a project timeline where every phase ends in a **PayPal payment gate**. It checks each deliverable against the contract, sends the PayPal invoice, chases late payments politely, and pays your subcontractors once the client pays. It never moves money without your approval.
 
+**▶ Live demo: [paid-to-proceed.onrender.com](https://paid-to-proceed.onrender.com/)**. There's nothing to install. A demo project is already loaded, and the first visit may take up to a minute to wake the server.
+
 > Built for the [PayPal AI Hackathon 2026](https://paypalaihackathon.devpost.com/). Everything runs on the **PayPal sandbox**.
 
 ### What's different

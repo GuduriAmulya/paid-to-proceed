@@ -67,7 +67,16 @@ function projectBrief(p: Project) {
       invoice: m.invoice ? { id: m.invoice.id, number: m.invoice.number, dueDate: m.invoice.dueDate, status: m.invoice.status } : null,
       remindersSent: m.reminders.length,
       scopeVerdict: m.scopeCheck?.verdict ?? null,
+      paidAt: m.paidAt ?? null,
+      payouts: m.payouts.map((po) => ({
+        to: p.subcontractors.find((s) => s.id === po.subcontractorId)?.name ?? po.subcontractorId,
+        amount: po.amount,
+        payoutBatchId: po.batchId,
+        status: po.status,
+        createdAt: po.at,
+      })),
     })),
+    subcontractors: p.subcontractors.map((s) => ({ name: s.name, role: s.role })),
     pendingApprovals: p.actions.filter((a) => a.status === "pending").map((a) => ({ id: a.id, type: a.type, title: a.title })),
   };
 }
@@ -142,6 +151,7 @@ export async function chat(projectId: string | null, messages: { role: "user" | 
     system: `You are the Paid to Proceed agent, a calm, sharp back-office assistant for an independent freelancer who bills overseas clients through PayPal.
 Today (demo clock) is ${isoDate(now())}. ${focus}
 ${getDb().clockOffsetDays ? `The demo clock is ${getDb().clockOffsetDays} days ahead of real time: dates Paid to Proceed records (paid dates, due dates) use the demo clock, while PayPal's own timestamps use real time. Don't flag that gap as a problem.` : ""}
+Payouts Paid to Proceed sent are listed per milestone in get_projects (with PayPal payout batch ids); PayPal's transaction list can lag behind a PENDING payout, so trust get_projects for who was paid.
 Invoices that Paid to Proceed tracks are listed in get_projects. The PayPal account may also hold older test invoices; focus on the tracked ones and mention others in one short line at most.
 "Simulate payment" in Paid to Proceed records an external payment on the PayPal invoice (status MARKED_AS_PAID) - treat it as the client having paid.
 Use get_projects for project state and the paypal_* tools (PayPal Agent Toolkit, sandbox) for live PayPal data such as invoice status or transactions.

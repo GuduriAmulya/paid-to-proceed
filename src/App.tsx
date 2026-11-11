@@ -110,10 +110,15 @@ export default function App() {
         </div>
       </header>
 
-      {state && (!state.paypalConfigured || !state.aiConfigured || state.paypalMissing.length > 0) && (
+      {state && (!state.paypalConfigured || !state.aiConfigured || state.paypalMissing.length > 0 || state.paypalAuthError) && (
         <div className="setup-banner">
           <i className="fa fa-plug-circle-exclamation" />
           {!state.paypalConfigured && <span>PayPal sandbox keys missing - set PAYPAL_CLIENT_ID / PAYPAL_CLIENT_SECRET.</span>}
+          {state.paypalAuthError && (
+            <span>
+              PayPal rejected the server's sandbox keys ({state.paypalAuthError}). Check that PAYPAL_CLIENT_ID and PAYPAL_CLIENT_SECRET are the sandbox Client ID and Secret of the same app.
+            </span>
+          )}
           {state.paypalMissing.length > 0 && (
             <span>
               Your PayPal sandbox app is missing: <b>{state.paypalMissing.join(", ")}</b>. Enable them under Apps &amp; Credentials → your app → Features.

@@ -66,6 +66,7 @@ export interface AppState {
   clockOffsetDays: number;
   paypalConfigured: boolean;
   paypalMissing: string[];
+  paypalAuthError: string | null;
   paypalEnv: string;
   aiConfigured: boolean;
   model: string;
