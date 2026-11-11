@@ -1,0 +1,27 @@
+services:
+  - type: web
+    name: paid-to-proceed
+    runtime: node
+    plan: starter
+    buildCommand: npm ci --include=dev && npm run build
+    startCommand: npm start
+    healthCheckPath: /api/state
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: PAYPAL_ENVIRONMENT
+        value: SANDBOX
+      - key: ANTHROPIC_MODEL
+        value: claude-opus-5-5
+      - key: PAYPAL_CLIENT_ID
+        sync: false
+      - key: PAYPAL_CLIENT_SECRET
+        sync: false
+      - key: PAYPAL_WEBHOOK_ID
+        sync: false
+      - key: DEMO_CLIENT_EMAIL
+        sync: false
+      - key: DEMO_SUBCONTRACTOR_EMAIL
+        sync: false
+      - key: ANTHROPIC_API_KEY
+        sync: false

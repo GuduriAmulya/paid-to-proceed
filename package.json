@@ -1,0 +1,40 @@
+{
+  "name": "paid-to-proceed",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Paid to Proceed - an AI agent that turns freelance contracts into payment-gated project timelines and collects milestone payments with PayPal.",
+  "license": "MIT",
+  "scripts": {
+    "dev": "concurrently -k -n api,web -c blue,magenta \"tsx watch --include .env server/index.ts\" \"vite\"",
+    "build": "vite build",
+    "start": "tsx server/index.ts",
+    "typecheck": "tsc --noEmit -p .",
+    "test:e2e": "tsx scripts/e2e.mts --full"
+  },
+  "dependencies": {
+    "@anthropic-ai/sdk": "^1.6.0",
+    "@bryntum/gantt": "npm:@bryntum/gantt-trial@^7.3.8",
+    "@bryntum/gantt-react": "^7.3.8",
+    "@paypal/agent-toolkit": "^1.11.0",
+    "dotenv": "^18.0.9",
+    "express": "^5.3.0",
+    "multer": "^2.5.0",
+    "react": "^19.3.1",
+    "react-dom": "^19.3.1",
+    "tsx": "^4.23.15",
+    "zod": "^3.25.76",
+    "zod-to-json-schema": "^3.25.2"
+  },
+  "devDependencies": {
+    "@types/express": "^5.0.6",
+    "@types/multer": "^2.3.0",
+    "@types/node": "^26.6.6",
+    "@types/react": "^19.3.0",
+    "@types/react-dom": "^19.3.0",
+    "@vitejs/plugin-react": "^6.2.1",
+    "concurrently": "^10.0.7",
+    "typescript": "^7.0.2",
+    "vite": "^8.3.6"
+  }
+}
