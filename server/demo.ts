@@ -96,7 +96,8 @@ const PLAN: ContractPlan = {
 export const SAMPLE_SUBMISSION = `Milestone 1 is ready for review.
 - Figma file: https://figma.example/harbor-pine-v2 (Home, Services, Book Appointment - each with desktop 1440px and mobile 390px frames)
 - Patient journey map and sitemap are on pages 1-2 of the file.
-- Dana reviewed the first draft on our call on Tuesday and asked for calmer colours and a "Book now" button above the fold; both changes are in v2.
+- Dana reviewed all six views (desktop and mobile for each of the three pages) on our call on Tuesday and asked for calmer colours and a "Book now" button above the fold.
+- Both changes are in v2 (one revision round), and Dana approved v2 by email the next day.
 - Meera's exercise illustrations are used on the Services page.`;
 
 /** Seeds the demo project so that Milestone 1's design work finishes today. */

@@ -22,9 +22,9 @@ export default function App() {
     window.setTimeout(() => setToast(null), 5000);
   };
 
-  const applyProject = useCallback((p: Project) => {
+  const applyProject = useCallback((p: Project, today = "") => {
     setProject(p);
-    const sig = `${p.id}|${p.milestones.map((m) => `${m.status}:${m.gate}:${m.daysOverdue}`).join(",")}`;
+    const sig = `${p.id}|${today}|${p.milestones.map((m) => `${m.status}:${m.gate}:${m.daysOverdue}`).join(",")}`;
     if (sig !== signature.current) {
       signature.current = sig;
       setGanttVersion((v) => v + 1);
@@ -36,7 +36,7 @@ export default function App() {
     setState(s);
     const id = projectId && s.projects.some((p) => p.id === projectId) ? projectId : s.projects[0]?.id ?? null;
     if (id !== projectId) setProjectId(id);
-    if (id) applyProject(await api.project(id));
+    if (id) applyProject(await api.project(id), s.today);
     else setProject(null);
   }, [projectId, applyProject]);
 

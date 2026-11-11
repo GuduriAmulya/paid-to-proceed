@@ -83,6 +83,11 @@ export function Timeline({ projectId, version, currency, showBaseline }: { proje
       const data = await api.gantt(projectId);
       const gantt = ref.current?.instance;
       if (!gantt || cancelled) return;
+      // Start from empty stores: reloading rows by id keeps stale custom fields (gate state) and time ranges.
+      const proj = gantt.project as any;
+      proj.dependencyStore?.removeAll(true);
+      proj.taskStore?.removeAll(true);
+      proj.timeRangeStore?.removeAll(true);
       await gantt.project.loadCrudManagerData(data);
       await gantt.project.commitAsync();
       if (cancelled) return;

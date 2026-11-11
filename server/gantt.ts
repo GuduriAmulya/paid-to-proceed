@@ -144,7 +144,7 @@ export function buildGanttData(project: Project) {
     calendars: { rows: [{ id: "allday", name: "Every day", unspecifiedTimeIsWorking: true, intervals: [] }] },
     tasks: { rows: tasks },
     dependencies: { rows: deps },
-    timeRanges: { rows: [{ id: "today", name: "Today", startDate: today, cls: "tranche-today" }] },
+    timeRanges: { rows: [{ id: `today_${today}`, name: "Today", startDate: today, endDate: addDays(today, 1), cls: "tranche-today" }] },
     meta: {
       today,
       baselineEnd: base.get("project_end")?.end,

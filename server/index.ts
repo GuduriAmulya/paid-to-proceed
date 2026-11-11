@@ -172,7 +172,9 @@ app.post(
 );
 
 app.post("/api/reset", (_req, res) => {
-  resetDb({ clockOffsetDays: 0, projects: [demoProject()] });
+  resetDb({ clockOffsetDays: 0, projects: [] }); // reset the clock first: the demo project is dated from "today"
+  getDb().projects.push(demoProject());
+  save();
   res.json({ id: getDb().projects[0].id });
 });
 
