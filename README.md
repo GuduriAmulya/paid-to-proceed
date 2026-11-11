@@ -101,6 +101,8 @@ flowchart LR
 
 ## 3-minute demo script (also how judges can test)
 
+> **Live demo note:** the hosted demo runs on Render's free plan. If nobody has visited for about 15 minutes, the first load can take **up to a minute** while the server wakes up. After that it's fast. Waking up also resets the demo data, so you always start from a clean Harbor & Pine project.
+
 1. **Demo project:** Harbor & Pine Physiotherapy (Seattle) hires Ananya, a designer-developer in Bengaluru. The contract is $4,500 in three phases, and two subcontractors are paid out of the milestones.
 2. **Phase 1 → Submit deliverable → "Use sample submission" → Run scope check.** Claude checks each criterion, and an invoice proposal appears in the inbox.
 3. **Approve & send invoice.** A real PayPal sandbox invoice is created and sent. The gate turns amber.

@@ -2,7 +2,7 @@ services:
   - type: web
     name: paid-to-proceed
     runtime: node
-    plan: starter
+    plan: free
     buildCommand: npm ci --include=dev && npm run build
     startCommand: npm start
     healthCheckPath: /api/state
